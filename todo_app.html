@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<!--
+Created using JS Bin
+http://jsbin.com
+
+Copyright (c) 2015 by mikekresnik (http://jsbin.com/cedoni/13/edit)
+
+Released under the MIT license: http://jsbin.mit-license.org
+-->
+<meta name="robots" content="noindex">
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>JS Bin</title>
+<style id="jsbin-css">
+body {
+  font-family: sans-serif;
+}
+input {
+  display: block;
+  margin-top: 25px;
+  
+}
+</style>
+</head>
+<body>
+<form id="form">What Should You Do Today?
+  <input type="text" placeholder="task" id="taskText"/>
+
+  <input type="text" placeholder="due" id="dueText"/>
+  
+  <input type="text" placeholder="note" id="noteText"/>
+
+  <input type="submit" value="Do it!"/>
+    </form>
+
+    <ul id="todo">
+    </ul>
+<script id="jsbin-javascript">
+// What do I need to store?
+// task (string), deadline (date), notes (string), complete (boolean)
+
+window.onload = function () {
+  var tasks2 = [
+  //"tasks" is an array
+  //Object 1 "Get Groceries"
+    {
+      task: "Get Groceries",
+      deadline: new Date(),
+      notes: "bring your own meat, side, a good beer to share",
+      complete: false
+    },
+
+    //Object 2 "Oil Change for Jeep"
+    {
+      task: "Oil Change for Jeep",
+      deadline: new Date(),
+      notes: "Autozone, 5W-20, oil filter",
+      complete: false
+    }
+  ];
+  //for loop in a function START
+  var userTask = function() {
+    document.getElementById('todo').innerHTML = "";
+    
+    for(var i = 0; i < tasks2.length; i++); {
+    var listItem = document.createElement('li');
+    listItem.innerHTML = tasks2[i].task + " " + "<br>" + 
+                         tasks2[i].deadline + " " + "<br>" + 
+                         tasks2[i].notes + "<br><br>";
+    
+    document.getElementById('todo').appendChild(listItem);
+  }};//for loop in a function END
+                userTask();
+    document.getElementById('form').onsubmit = function () {
+        tasks2.push({
+        task: document.getElementById('taskText').value,
+        deadline: document.getElementById('dueText').value, 
+        notes: document.getElementById('noteText').value
+                    });
+      
+               userTask();
+                
+                
+                console.log(tasks2);
+                return false;
+                
+      
+            };
+  
+};
+
+
+</script>
+</body>
+</html>
